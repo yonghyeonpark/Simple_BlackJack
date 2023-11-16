@@ -7,9 +7,11 @@ import java.util.List;
 public class Player {
 
     private final List<Integer> cardNumbers;
+    private final Score score;
 
     public Player() {
         this.cardNumbers = new ArrayList<>();
+        this.score = new Score();
     }
 
     public int getCardNumber() {
@@ -17,5 +19,17 @@ public class Player {
         int cardNumber = cardNumberGenerator.generateCardNumber();
         cardNumbers.add(cardNumber);
         return cardNumber;
+    }
+
+    public void win() {
+        score.addVictory();
+    }
+
+    public void defeated() {
+        score.addDefeat();
+    }
+
+    public void tie() {
+        score.addDraw();
     }
 }
