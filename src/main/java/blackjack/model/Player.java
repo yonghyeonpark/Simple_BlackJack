@@ -1,17 +1,21 @@
 package blackjack.model;
 
 import blackjack.util.CardNumberGenerator;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
 
-    private final int cardNumber;
+    private final List<Integer> cardNumbers;
 
     public Player() {
-        CardNumberGenerator cardNumberGenerator = new CardNumberGenerator();
-        this.cardNumber = cardNumberGenerator.generateCardNumber();
+        this.cardNumbers = new ArrayList<>();
     }
 
     public int getCardNumber() {
+        CardNumberGenerator cardNumberGenerator = new CardNumberGenerator();
+        int cardNumber = cardNumberGenerator.generateCardNumber();
+        cardNumbers.add(cardNumber);
         return cardNumber;
     }
 }
