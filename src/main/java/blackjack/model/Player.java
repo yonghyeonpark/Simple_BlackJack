@@ -32,4 +32,16 @@ public class Player {
     public void tie() {
         score.addDraw();
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("You   :");
+        for (int cardNumber : cardNumbers) {
+            stringBuilder.append(" [")
+                    .append(cardNumber)
+                    .append("]");
+        }
+        return stringBuilder.toString();
+    }
 }

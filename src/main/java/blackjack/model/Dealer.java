@@ -18,4 +18,16 @@ public class Dealer {
         cardNumbers.add(cardNumber);
         return cardNumber;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Dealer:");
+        for (int cardNumber : cardNumbers) {
+            stringBuilder.append(" [")
+                    .append(cardNumber)
+                    .append("]");
+        }
+        return stringBuilder.toString();
+    }
 }
