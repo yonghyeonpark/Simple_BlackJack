@@ -33,6 +33,10 @@ public class Player {
         score.addDraw();
     }
 
+    public String getScore() {
+        return score.toString();
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

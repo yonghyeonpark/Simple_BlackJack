@@ -29,4 +29,34 @@ public class Score {
     public void addDraw() {
         score.put("무", score.get("무") + 1);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        existDraw(stringBuilder);
+        notExistDraw(stringBuilder);
+        return stringBuilder.toString();
+    }
+
+    private void existDraw(StringBuilder stringBuilder) {
+        if (score.get("무") != 0) {
+            stringBuilder.append("현재 전적: ")
+                    .append(score.get("승"))
+                    .append("승 ")
+                    .append(score.get("무"))
+                    .append("무 ")
+                    .append(score.get("패"))
+                    .append("패");
+        }
+    }
+
+    private void notExistDraw(StringBuilder stringBuilder) {
+        if (score.get("무") == 0) {
+            stringBuilder.append("현재 전적: ")
+                    .append(score.get("승"))
+                    .append("승 ")
+                    .append(score.get("패"))
+                    .append("패");
+        }
+    }
 }
