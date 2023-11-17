@@ -47,4 +47,12 @@ public class BlackjackGame {
         player.tie();
         return "비겼습니다.";
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Game ")
+                .append(gameRound);
+        return stringBuilder.toString();
+    }
 }
