@@ -8,13 +8,13 @@ public class InputView {
 
     public String readGameDecision() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String gameDecision = reader.readLine();
+        String gameDecision = reader.readLine().toUpperCase();
         validate(gameDecision);
+        System.out.println();
         return gameDecision;
     }
 
-    private void validate(String inputGameDecision) {
-        String gameDecision = inputGameDecision.toUpperCase();
+    private void validate(String gameDecision) {
         if (!gameDecision.equals("Y") && !gameDecision.equals("N")) {
             throw new IllegalArgumentException();
         }
