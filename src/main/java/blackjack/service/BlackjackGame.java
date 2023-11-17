@@ -15,6 +15,23 @@ public class BlackjackGame {
         this.gameRound = 1;
     }
 
+    public String getPlayerNumbers() {
+        return player.toString();
+    }
+
+    public String getDealerNumbers() {
+        return dealer.toString();
+    }
+
+    public String getScore() {
+        return player.getScore();
+    }
+
+    public void pickCard() {
+        player.pickCard();
+        dealer.pickCard();
+    }
+
     public String compareCardNumber() {
         int playerCurrentCardNumber = player.getCurrentCardNumber(gameRound);
         int dealerCurrentCardNumber = dealer.getCurrentCardNumber(gameRound);
