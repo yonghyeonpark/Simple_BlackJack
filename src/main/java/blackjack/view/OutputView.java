@@ -11,7 +11,7 @@ public class OutputView {
         System.out.println(information);
     }
 
-    public void printIsGameContinueMessage() {
+    public void printShouldGameContinueMessage() {
         System.out.print("한 게임 더 하시겠습니까? (Y / N) ");
     }
 
