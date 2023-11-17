@@ -48,6 +48,13 @@ public class BlackjackGame {
         return "비겼습니다.";
     }
 
+    public boolean judgeGameContinue(String gameDecision) {
+        if (gameDecision.equals("Y")) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
