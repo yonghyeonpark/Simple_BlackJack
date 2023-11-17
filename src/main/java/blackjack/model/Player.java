@@ -14,11 +14,14 @@ public class Player {
         this.score = new Score();
     }
 
-    public int getCardNumber() {
+    public void pickCard() {
         CardNumberGenerator cardNumberGenerator = new CardNumberGenerator();
         int cardNumber = cardNumberGenerator.generateCardNumber();
         cardNumbers.add(cardNumber);
-        return cardNumber;
+    }
+
+    public int getCurrentCardNumber(int round) {
+        return cardNumbers.get(round - 1);
     }
 
     public void win() {
