@@ -57,7 +57,7 @@ public class Controller {
     }
 
     private String getGameDecision() throws IOException {
-        while(true) {
+        while (true) {
             try {
                 return inputView.readGameDecision();
             } catch (IllegalArgumentException e) {
