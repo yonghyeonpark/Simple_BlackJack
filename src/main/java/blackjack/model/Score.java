@@ -5,6 +5,15 @@ import java.util.Map;
 
 public class Score {
 
+    private static final int INITIAL_VALUE = 0;
+    private static final int INCREASE_VALUE = 1;
+    private static final String VICTORY = "승";
+    private static final String DEFEAT = "패";
+    private static final String DRAW = "무";
+    private static final String SPACE = " ";
+    private static final String CURRENT_SCORE = "현재 전적: ";
+
+
     private final Map<String, Integer> score;
 
     public Score() {
@@ -13,21 +22,21 @@ public class Score {
     }
 
     private void setUp() {
-        score.put("승", 0);
-        score.put("패", 0);
-        score.put("무", 0);
+        score.put(VICTORY, INITIAL_VALUE);
+        score.put(DEFEAT, INITIAL_VALUE);
+        score.put(DRAW, INITIAL_VALUE);
     }
 
     public void addVictory() {
-        score.put("승", score.get("승") + 1);
+        score.put(VICTORY, score.get(VICTORY) + INCREASE_VALUE);
     }
 
     public void addDefeat() {
-        score.put("패", score.get("패") + 1);
+        score.put(DEFEAT, score.get(DEFEAT) + INCREASE_VALUE);
     }
 
     public void addDraw() {
-        score.put("무", score.get("무") + 1);
+        score.put(DRAW, score.get(DRAW) + INCREASE_VALUE);
     }
 
     @Override
@@ -39,24 +48,27 @@ public class Score {
     }
 
     private void existDraw(StringBuilder stringBuilder) {
-        if (score.get("무") != 0) {
-            stringBuilder.append("현재 전적: ")
-                    .append(score.get("승"))
-                    .append("승 ")
-                    .append(score.get("무"))
-                    .append("무 ")
-                    .append(score.get("패"))
-                    .append("패");
+        if (score.get(DRAW) != INITIAL_VALUE) {
+            stringBuilder.append(CURRENT_SCORE)
+                    .append(score.get(VICTORY))
+                    .append(VICTORY)
+                    .append(SPACE)
+                    .append(score.get(DRAW))
+                    .append(DRAW)
+                    .append(SPACE)
+                    .append(score.get(DEFEAT))
+                    .append(DEFEAT);
         }
     }
 
     private void notExistDraw(StringBuilder stringBuilder) {
-        if (score.get("무") == 0) {
-            stringBuilder.append("현재 전적: ")
-                    .append(score.get("승"))
-                    .append("승 ")
-                    .append(score.get("패"))
-                    .append("패");
+        if (score.get(DRAW) == INITIAL_VALUE) {
+            stringBuilder.append(CURRENT_SCORE)
+                    .append(score.get(VICTORY))
+                    .append(VICTORY)
+                    .append(SPACE)
+                    .append(score.get(DEFEAT))
+                    .append(DEFEAT);
         }
     }
 }

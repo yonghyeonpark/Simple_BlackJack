@@ -5,6 +5,13 @@ import blackjack.model.Player;
 
 public class BlackjackGame {
 
+    private static final int INITIAL_VALUE = 1;
+    private static final String PLAYER_WIN_MESSAGE = "당신이 이겼습니다.";
+    private static final String DEALER_WIN_MESSAGE = "딜러가 이겼습니다.";
+    private static final String DRAW_MESSAGE = "비겼습니다.";
+    private static final String YES = "Y";
+    private static final String GAME_ROUND_FORMAT = "Game %d";
+
     private final Player player;
     private final Dealer dealer;
     private int gameRound;
@@ -12,7 +19,7 @@ public class BlackjackGame {
     public BlackjackGame(Player player, Dealer dealer) {
         this.player = player;
         this.dealer = dealer;
-        this.gameRound = 1;
+        this.gameRound = INITIAL_VALUE;
     }
 
     public String getPlayerNumbers() {
@@ -38,18 +45,18 @@ public class BlackjackGame {
         gameRound++;
         if (playerCurrentCardNumber > dealerCurrentCardNumber) {
             player.win();
-            return "당신이 이겼습니다.";
+            return PLAYER_WIN_MESSAGE;
         }
         if (playerCurrentCardNumber < dealerCurrentCardNumber) {
             player.defeated();
-            return "딜러가 이겼습니다.";
+            return DEALER_WIN_MESSAGE;
         }
         player.tie();
-        return "비겼습니다.";
+        return DRAW_MESSAGE;
     }
 
     public boolean judgeGameContinue(String gameDecision) {
-        if (gameDecision.equals("Y")) {
+        if (gameDecision.equals(YES)) {
             return true;
         }
         return false;
@@ -58,8 +65,7 @@ public class BlackjackGame {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Game ")
-                .append(gameRound);
+        stringBuilder.append(String.format(GAME_ROUND_FORMAT, gameRound));
         return stringBuilder.toString();
     }
 }

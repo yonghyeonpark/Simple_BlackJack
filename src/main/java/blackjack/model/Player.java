@@ -6,6 +6,10 @@ import java.util.List;
 
 public class Player {
 
+    private static final int DECREASE_VALUE = 1;
+    private static final String CARD_NUMBERS_FORMAT_START = "You   : ";
+    private static final String CARD_NUMBER_FORMAT = "[%d]";
+
     private final List<Integer> cardNumbers;
     private final Score score;
 
@@ -21,7 +25,7 @@ public class Player {
     }
 
     public int getCurrentCardNumber(int round) {
-        return cardNumbers.get(round - 1);
+        return cardNumbers.get(round - DECREASE_VALUE);
     }
 
     public void win() {
@@ -43,11 +47,9 @@ public class Player {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("You   :");
+        stringBuilder.append(CARD_NUMBERS_FORMAT_START);
         for (int cardNumber : cardNumbers) {
-            stringBuilder.append(" [")
-                    .append(cardNumber)
-                    .append("]");
+            stringBuilder.append(String.format(CARD_NUMBER_FORMAT, cardNumber));
         }
         return stringBuilder.toString();
     }
