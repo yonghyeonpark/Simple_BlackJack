@@ -61,7 +61,7 @@ public class Controller {
             try {
                 return inputView.readGameDecision();
             } catch (IllegalArgumentException e) {
-                System.out.println("Y 혹은 N으로 입력해 주세요.(대소문자를 구분하지 않습니다.)");
+                System.out.println(e.getMessage());
             }
         }
     }

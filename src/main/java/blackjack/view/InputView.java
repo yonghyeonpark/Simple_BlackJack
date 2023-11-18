@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 
 public class InputView {
 
+    private static final String ERROR_MESSAGE = "Y 혹은 N으로 입력해 주세요.(대소문자를 구분하지 않습니다.)";
+
     public String readGameDecision() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String gameDecision = reader.readLine().toUpperCase();
@@ -16,7 +18,7 @@ public class InputView {
 
     private void validate(String gameDecision) {
         if (!gameDecision.equals("Y") && !gameDecision.equals("N")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MESSAGE);
         }
     }
 }
