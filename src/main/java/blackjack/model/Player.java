@@ -18,6 +18,10 @@ public class Player {
         this.cardNumbers = new ArrayList<>();
     }
 
+    public void bet(int bettingAmount) {
+        property.bet(bettingAmount);
+    }
+
     public void pullCard() {
         cardNumbers.add(cardDeck.pullCard());
     }
