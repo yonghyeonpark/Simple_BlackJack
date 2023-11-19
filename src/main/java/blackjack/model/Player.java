@@ -21,4 +21,14 @@ public class Player {
     public void pullCard() {
         cardNumbers.add(cardDeck.pullCard());
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int cardNumber : cardNumbers) {
+            stringBuilder.append("플레이어: ")
+                    .append(String.format("[%d]", cardNumber));
+        }
+        return stringBuilder.toString();
+    }
 }
