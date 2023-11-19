@@ -14,4 +14,12 @@ public class Property {
         }
         property -= bettingAmount;
     }
+
+    public void plusBettingAmount(int bettingAmount) {
+        property += bettingAmount;
+    }
+
+    public void minusBettingAmount(int bettingAmount) {
+        property -= bettingAmount;
+    }
 }
