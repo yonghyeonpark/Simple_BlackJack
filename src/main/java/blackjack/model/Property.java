@@ -17,6 +17,9 @@ public class Property {
     }
 
     private void validateRange(int bettingAmount) {
+        if (bettingAmount < 100) {
+            throw new IllegalArgumentException("잘못 입력하셨습니다.");
+        }
         if (property - bettingAmount < 0) {
             throw new IllegalArgumentException("잘못 입력하셨습니다.");
         }
