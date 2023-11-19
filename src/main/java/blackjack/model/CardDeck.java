@@ -31,4 +31,12 @@ public class CardDeck {
             }
         }
     }
+
+    public int countCardDeck() {
+        int count = 0;
+        for (Map.Entry<Integer, Integer> entry : cardDeck.entrySet()) {
+            count += entry.getValue();
+        }
+        return count;
+    }
 }
