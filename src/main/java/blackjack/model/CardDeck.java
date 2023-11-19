@@ -9,6 +9,9 @@ import java.util.Queue;
 
 public class CardDeck {
 
+    private static final String CARD_DECK_NUMBERS_FORMAT_START = "덱의 카드 ";
+    private static final String CARD_DECK_NUMBER_FORMAT = "[%d]";
+
     private final Queue<Integer> cardDeck;
 
     public CardDeck() {
@@ -40,5 +43,14 @@ public class CardDeck {
 
     public int countCardDeck() {
         return cardDeck.size();
+    }
+
+    public String showSixCardsInOrder() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(CARD_DECK_NUMBERS_FORMAT_START);
+        for (int i = 0; i < 6; i++) {
+            stringBuilder.append(String.format(CARD_DECK_NUMBER_FORMAT, cardDeck.peek()));
+        }
+        return stringBuilder.toString();
     }
 }
