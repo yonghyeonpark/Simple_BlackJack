@@ -22,6 +22,14 @@ public class Player {
         cardNumbers.add(cardDeck.pullCard());
     }
 
+    public int calculateCardNumbersSum() {
+        int sum = 0;
+        for (int cardNumber : cardNumbers) {
+            sum += cardNumber;
+        }
+        return sum;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
