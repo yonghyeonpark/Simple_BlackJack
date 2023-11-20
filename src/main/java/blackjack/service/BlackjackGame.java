@@ -7,6 +7,7 @@ import blackjack.model.Player;
 public class BlackjackGame {
 
     private static final int INITIAL_VALUE = 1;
+    private static final String GAME_ROUND_FORMAT = "Game %d";
 
     private final Player player;
     private final Dealer dealer;
@@ -66,5 +67,12 @@ public class BlackjackGame {
         if (cardDeck.count() <= 10) {
             cardDeck.setUp();
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(String.format(GAME_ROUND_FORMAT, gameRound));
+        return stringBuilder.toString();
     }
 }
