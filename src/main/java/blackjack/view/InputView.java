@@ -9,19 +9,35 @@ public class InputView {
 
     private static final String YES = "Y";
     private static final String NO = "N";
+    private static final String INPUT_BETTING_AMOUNT_MESSAGE = "얼마를 거시겠습니까? ";
+    private static final String INPUT_CARD_RECEIPT_DECISION_MESSAGE = "카드를 더 받겠습니까? (Y / N) ";
+    private static final String INPUT_GAME_DECISION_MESSAGE = "한 게임 더 하시겠습니까? (Y / N) ";
     private static final String ERROR_MESSAGE = "잘못 입력하셨습니다.";
 
     public int readBettingAmount() throws IOException {
+        System.out.print(INPUT_BETTING_AMOUNT_MESSAGE);
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        return Convert.stringToInteger(reader.readLine());
+        int bettingAmount = Convert.stringToInteger(reader.readLine());
+        System.out.println();
+        return bettingAmount;
     }
 
-    public String readGameOrCardDecision() throws IOException {
+    public String readCardReceiptDecision() throws IOException {
+        System.out.print(INPUT_CARD_RECEIPT_DECISION_MESSAGE);
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String gameOrCardDecision = reader.readLine().toUpperCase();
-        validate(gameOrCardDecision);
+        String cardReceiptDecision = reader.readLine().toUpperCase();
+        validate(cardReceiptDecision);
         System.out.println();
-        return gameOrCardDecision;
+        return cardReceiptDecision;
+    }
+
+    public String readGameDecision() throws IOException {
+        System.out.print(INPUT_GAME_DECISION_MESSAGE);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String gameDecision = reader.readLine().toUpperCase();
+        validate(gameDecision);
+        System.out.println();
+        return gameDecision;
     }
 
     private void validate(String gameOrCardDecision) {
