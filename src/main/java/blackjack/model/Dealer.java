@@ -8,16 +8,14 @@ public class Dealer {
     private static final String CARD_NUMBERS_FORMAT_START = "딜러: ";
     private static final String CARD_NUMBER_FORMAT = "[%d]";
 
-    private final CardDeck cardDeck;
     private final List<Integer> cardNumbers;
 
-    public Dealer(CardDeck cardDeck) {
-        this.cardDeck = cardDeck;
+    public Dealer() {
         this.cardNumbers = new ArrayList<>();
     }
 
-    public void pullCard() {
-        cardNumbers.add(cardDeck.pullCard());
+    public void addCard(int cardNumber) {
+        cardNumbers.add(cardNumber);
     }
 
     public int calculateCardNumbersSum() {
