@@ -42,4 +42,22 @@ public class BlackjackGame {
                 .append(player.calculateCardNumbersSum());
         return stringBuilder.toString();
     }
+
+    public void pullDealerCard() {
+        while (dealer.calculateCardNumbersSum() <= 16) {
+            dealer.addCard(cardDeck.pullCard());
+        }
+    }
+
+    public String getDealerNumbers() {
+        return dealer.toString();
+    }
+
+    public String getDealerCardSum() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("딜러의 카드 합계는 ")
+                .append(dealer.calculateCardNumbersSum())
+                .append("입니다.");
+        return stringBuilder.toString();
+    }
 }
