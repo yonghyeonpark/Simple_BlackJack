@@ -9,12 +9,10 @@ public class Player {
     private static final String CARD_NUMBER_FORMAT = "[%d]";
 
     private final Property property;
-    private final CardDeck cardDeck;
     private final List<Integer> cardNumbers;
 
-    public Player(Property property, CardDeck cardDeck) {
+    public Player(Property property) {
         this.property = property;
-        this.cardDeck = cardDeck;
         this.cardNumbers = new ArrayList<>();
     }
 
@@ -22,8 +20,8 @@ public class Player {
         property.bet(bettingAmount);
     }
 
-    public void pullCard() {
-        cardNumbers.add(cardDeck.pullCard());
+    public void addCard(int cardNumber) {
+        cardNumbers.add(cardNumber);
     }
 
     public int calculateCardNumbersSum() {
