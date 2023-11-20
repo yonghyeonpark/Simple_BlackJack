@@ -35,6 +35,10 @@ public class Property {
         property += bettingAmount;
     }
 
+    public void plusTwiceBettingAmount(int bettingAmount) {
+        property += (bettingAmount * 2);
+    }
+
     public void minusBettingAmount(int bettingAmount) {
         property -= bettingAmount;
     }
