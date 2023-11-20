@@ -42,8 +42,8 @@ public class Player {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         for (int cardNumber : cardNumbers) {
-            stringBuilder.append("플레이어: ")
-                    .append(String.format("[%d]", cardNumber));
+            stringBuilder.append(CARD_NUMBERS_FORMAT_START)
+                    .append(String.format(CARD_NUMBER_FORMAT, cardNumber));
         }
         return stringBuilder.toString();
     }
