@@ -25,6 +25,7 @@ public class BlackjackGame {
     }
 
     public void bet(int bettingAmount) {
+        gameRound++;
         player.bet(bettingAmount);
     }
 
