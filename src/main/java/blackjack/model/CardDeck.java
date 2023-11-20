@@ -38,6 +38,9 @@ public class CardDeck {
     }
 
     public int pullCard() {
+        if (cardDeck.poll() == null) {
+            setUp();
+        }
         return cardDeck.poll();
     }
 
