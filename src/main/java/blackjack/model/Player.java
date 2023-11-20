@@ -34,6 +34,18 @@ public class Player {
         return sum;
     }
 
+    public void plusBettingAmount(int bettingAmount) {
+        property.plusBettingAmount(bettingAmount);
+    }
+
+    public void plusTwiceBettingAmount(int bettingAmount) {
+        property.plusTwiceBettingAmount(bettingAmount);
+    }
+
+    public void minusBettingAmount(int bettingAmount) {
+        property.minusBettingAmount(bettingAmount);
+    }
+
     public String getCurrentProperty() {
         return property.toString();
     }
