@@ -61,4 +61,10 @@ public class BlackjackGame {
                 .append("입니다.");
         return stringBuilder.toString();
     }
+
+    public void judgeGetNewDeck() {
+        if (cardDeck.count() <= 10) {
+            cardDeck.setUp();
+        }
+    }
 }
