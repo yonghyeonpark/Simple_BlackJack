@@ -34,6 +34,10 @@ public class Player {
         return sum;
     }
 
+    public String getCurrentProperty() {
+        return property.toString();
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
