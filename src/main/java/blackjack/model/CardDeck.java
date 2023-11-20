@@ -41,7 +41,7 @@ public class CardDeck {
         return cardDeck.poll();
     }
 
-    public int countCardDeck() {
+    public int count() {
         return cardDeck.size();
     }
 
