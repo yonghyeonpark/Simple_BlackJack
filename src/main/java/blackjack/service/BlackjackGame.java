@@ -3,21 +3,27 @@ package blackjack.service;
 import blackjack.model.CardDeck;
 import blackjack.model.Dealer;
 import blackjack.model.Player;
+import blackjack.model.Score;
 
 public class BlackjackGame {
 
     private static final int INITIAL_VALUE = 1;
     private static final String GAME_ROUND_FORMAT = "Game %d";
+    private static final String PLAYER_WIN_MESSAGE = "당신의 승리입니다.";
+    private static final String DEALER_WIN_MESSAGE = "당신의 패배입니다.";
+    private static final String DRAW_MESSAGE = "비겼습니다.";
 
     private final Player player;
     private final Dealer dealer;
     private final CardDeck cardDeck;
+    private final Score score;
     private int gameRound;
 
-    public BlackjackGame(Player player, Dealer dealer, CardDeck cardDeck) {
+    public BlackjackGame(Player player, Dealer dealer, CardDeck cardDeck, Score score) {
         this.player = player;
         this.dealer = dealer;
         this.cardDeck = cardDeck;
+        this.score = score;
         this.gameRound = INITIAL_VALUE;
     }
 
@@ -74,5 +80,35 @@ public class BlackjackGame {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(String.format(GAME_ROUND_FORMAT, gameRound));
         return stringBuilder.toString();
+    }
+
+    public String compareCardNumbersSum(int bettingAmount) {
+        if (dealer.calculateCardNumbersSum() == 21) {
+            player.minusBettingAmount(bettingAmount);
+            score.addDefeat();
+            return DEALER_WIN_MESSAGE;
+        }
+        if (dealer.calculateCardNumbersSum() >= 22) {
+            player.plusBettingAmount(bettingAmount);
+            score.addVictory();
+            return PLAYER_WIN_MESSAGE;
+        }
+        if (player.calculateCardNumbersSum() > dealer.calculateCardNumbersSum()) {
+            if (player.calculateCardNumbersSum() == 21) {
+                player.plusTwiceBettingAmount(bettingAmount);
+                score.addVictory();
+                return PLAYER_WIN_MESSAGE;
+            }
+            player.plusBettingAmount(bettingAmount);
+            score.addVictory();
+            return PLAYER_WIN_MESSAGE;
+        }
+        if (player.calculateCardNumbersSum() < dealer.calculateCardNumbersSum()) {
+            player.minusBettingAmount(bettingAmount);
+            score.addDefeat();
+            return DEALER_WIN_MESSAGE;
+        }
+        score.addDraw();
+        return DRAW_MESSAGE;
     }
 }
