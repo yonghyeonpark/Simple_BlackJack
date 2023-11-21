@@ -13,6 +13,7 @@ public class InputView {
     private static final String INPUT_CARD_RECEIPT_DECISION_MESSAGE = "카드를 더 받겠습니까? (Y / N) ";
     private static final String INPUT_GAME_DECISION_MESSAGE = "한 게임 더 하시겠습니까? (Y / N) ";
     private static final String ERROR_MESSAGE = "잘못 입력하셨습니다.";
+    private static final String CARD_PREVIEW_COMMAND = "CODESQUAD";
 
     public int readBettingAmount() throws IOException {
         try {
@@ -29,7 +30,7 @@ public class InputView {
         System.out.print(INPUT_CARD_RECEIPT_DECISION_MESSAGE);
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String cardReceiptDecision = reader.readLine().toUpperCase();
-        validate(cardReceiptDecision);
+        validateCardReceiptDecisionFormat(cardReceiptDecision);
         return cardReceiptDecision;
     }
 
@@ -37,12 +38,20 @@ public class InputView {
         System.out.print(INPUT_GAME_DECISION_MESSAGE);
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String gameDecision = reader.readLine().toUpperCase();
-        validate(gameDecision);
+        validateGameDecisionFormat(gameDecision);
         return gameDecision;
     }
 
-    private void validate(String gameOrCardDecision) {
-        if (!gameOrCardDecision.equals(YES) && !gameOrCardDecision.equals(NO)) {
+    private void validateCardReceiptDecisionFormat(String cardReceiptDecision) {
+        if (!cardReceiptDecision.equals(YES)
+                && !cardReceiptDecision.equals(NO)
+                && !cardReceiptDecision.equals(CARD_PREVIEW_COMMAND)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE);
+        }
+    }
+
+    private void validateGameDecisionFormat(String gameDecision) {
+        if (!gameDecision.equals(YES) && !gameDecision.equals(NO)) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }
     }
