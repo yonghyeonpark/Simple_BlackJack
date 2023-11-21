@@ -7,12 +7,11 @@ import blackjack.model.Score;
 
 public class BlackjackGame {
 
-    private static final int INITIAL_VALUE = 0;
+    private static final int INITIAL_VALUE = 1;
     private static final String GAME_ROUND_FORMAT = "Game %d";
     private static final String PLAYER_WIN_MESSAGE = "당신의 승리입니다.";
     private static final String DEALER_WIN_MESSAGE = "당신의 패배입니다.";
     private static final String DRAW_MESSAGE = "비겼습니다.";
-    private static final String PROPERTY_FORMAT_START = "현재 재산: ";
 
     private final Player player;
     private final Dealer dealer;
@@ -37,7 +36,6 @@ public class BlackjackGame {
     }
 
     public void bet(int bettingAmount) {
-        gameRound++;
         player.bet(bettingAmount);
     }
 
@@ -79,6 +77,12 @@ public class BlackjackGame {
         if (cardDeck.count() <= 10) {
             cardDeck.setUp();
         }
+    }
+
+    public String processInvalidPlayerCardSum(int bettingAmount) {
+        player.minusBettingAmount(bettingAmount);
+        score.addDefeat();
+        return DEALER_WIN_MESSAGE;
     }
 
     public String compareCardNumbersSum(int bettingAmount) {
