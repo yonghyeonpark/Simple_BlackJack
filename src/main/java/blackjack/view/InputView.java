@@ -15,11 +15,14 @@ public class InputView {
     private static final String ERROR_MESSAGE = "잘못 입력하셨습니다.";
 
     public int readBettingAmount() throws IOException {
-        System.out.print(INPUT_BETTING_AMOUNT_MESSAGE);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        int bettingAmount = Convert.stringToInteger(reader.readLine());
-        System.out.println();
-        return bettingAmount;
+        try {
+            System.out.print(INPUT_BETTING_AMOUNT_MESSAGE);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            int bettingAmount = Convert.stringToInteger(reader.readLine());
+            return bettingAmount;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_MESSAGE);
+        }
     }
 
     public String readCardReceiptDecision() throws IOException {
@@ -35,6 +38,7 @@ public class InputView {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String gameDecision = reader.readLine().toUpperCase();
         validate(gameDecision);
+        System.out.println();
         return gameDecision;
     }
 
