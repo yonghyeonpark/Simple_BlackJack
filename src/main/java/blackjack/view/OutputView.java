@@ -13,6 +13,11 @@ public class OutputView {
         System.out.println(information);
     }
 
+    public void printPlayerCardSum(int playerCardSum) {
+        System.out.print("총합: ");
+        System.out.println(playerCardSum);
+    }
+
     public void printGameResult(String gameResult) {
         System.out.println(gameResult);
         System.out.println(GAME_END_MESSAGE);
