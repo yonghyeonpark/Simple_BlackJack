@@ -87,30 +87,42 @@ public class BlackjackGame {
 
     public String compareCardNumbersSum(int bettingAmount) {
         if (dealer.calculateCardNumbersSum() == 21) {
-            player.minusBettingAmount(bettingAmount);
-            score.addDefeat();
-            return DEALER_WIN_MESSAGE;
+            return winDealer(bettingAmount);
         }
         if (dealer.calculateCardNumbersSum() >= 22) {
-            player.plusBettingAmount(bettingAmount);
-            score.addVictory();
-            return PLAYER_WIN_MESSAGE;
+            return winPlayer(bettingAmount);
         }
         if (player.calculateCardNumbersSum() > dealer.calculateCardNumbersSum()) {
             if (player.calculateCardNumbersSum() == 21) {
-                player.plusTwiceBettingAmount(bettingAmount);
-                score.addVictory();
-                return PLAYER_WIN_MESSAGE;
+                return winPlayerWithBlackjack(bettingAmount);
             }
-            player.plusBettingAmount(bettingAmount);
-            score.addVictory();
-            return PLAYER_WIN_MESSAGE;
+            return winPlayer(bettingAmount);
         }
         if (player.calculateCardNumbersSum() < dealer.calculateCardNumbersSum()) {
-            player.minusBettingAmount(bettingAmount);
-            score.addDefeat();
-            return DEALER_WIN_MESSAGE;
+            return winDealer(bettingAmount);
         }
+        return draw();
+    }
+
+    private String winPlayer(int bettingAmount) {
+        player.plusBettingAmount(bettingAmount);
+        score.addVictory();
+        return PLAYER_WIN_MESSAGE;
+    }
+
+    private String winPlayerWithBlackjack(int bettingAmount) {
+        player.plusTwiceBettingAmount(bettingAmount);
+        score.addVictory();
+        return PLAYER_WIN_MESSAGE;
+    }
+
+    private String winDealer(int bettingAmount) {
+        player.minusBettingAmount(bettingAmount);
+        score.addDefeat();
+        return DEALER_WIN_MESSAGE;
+    }
+
+    private String draw() {
         score.addDraw();
         return DRAW_MESSAGE;
     }
