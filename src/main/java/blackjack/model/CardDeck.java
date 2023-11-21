@@ -22,7 +22,7 @@ public class CardDeck {
         List<Integer> cardDeck = new ArrayList<>();
         CardNumberGenerator cardNumberGenerator = new CardNumberGenerator();
         for (int i = 1; i <= 10; i++) {
-            repeatFour(i);
+            repeatFour(i, cardDeck);
         }
         for (int i = 0; i < 12; i++) {
             cardDeck.add(11);
@@ -31,7 +31,7 @@ public class CardDeck {
         return cardDeck;
     }
 
-    private void repeatFour(int cardNumber) {
+    private void repeatFour(int cardNumber, List<Integer> cardDeck) {
         for (int i = 0; i < 4; i++) {
             cardDeck.add(cardNumber);
         }
