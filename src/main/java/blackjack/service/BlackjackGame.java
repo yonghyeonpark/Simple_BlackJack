@@ -75,7 +75,7 @@ public class BlackjackGame {
 
     public void judgeGetNewDeck() {
         if (cardDeck.count() <= 10) {
-            cardDeck.setUp();
+            cardDeck.initializeCardDeck();
         }
     }
 
@@ -132,6 +132,9 @@ public class BlackjackGame {
             player.addCard(cardDeck.pullCard());
             return true;
         }
+        if (answer.equals("CODESQUAD")) {
+            return true;
+        }
         return false;
     }
 
@@ -148,6 +151,10 @@ public class BlackjackGame {
                 .append("로 ")
                 .append(String.format("%d원의 자산이 남았습니다.", player.getCurrentProperty()));
         return stringBuilder.toString();
+    }
+
+    public String respondToCommand() {
+        return cardDeck.showSixCardsInOrder();
     }
 
     @Override
