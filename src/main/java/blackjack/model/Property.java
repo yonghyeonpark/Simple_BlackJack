@@ -13,7 +13,6 @@ public class Property {
     public void bet(int bettingAmount) {
         validateRange(bettingAmount);
         validateUnit(bettingAmount);
-        property -= bettingAmount;
     }
 
     private void validateRange(int bettingAmount) {
