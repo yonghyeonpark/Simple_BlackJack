@@ -18,6 +18,11 @@ public class OutputView {
         System.out.println(playerCardSum);
     }
 
+    public void printCurrentProperty(int currentProperty) {
+        System.out.print("현재 재산: ");
+        System.out.println(currentProperty);
+    }
+
     public void printGameResult(String gameResult) {
         System.out.println(gameResult);
         System.out.println(GAME_END_MESSAGE);
