@@ -29,9 +29,9 @@ public class Dealer {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(CARD_NUMBERS_FORMAT_START);
         for (int cardNumber : cardNumbers) {
-            stringBuilder.append(CARD_NUMBERS_FORMAT_START)
-                    .append(String.format(CARD_NUMBER_FORMAT, cardNumber));
+            stringBuilder.append(String.format(CARD_NUMBER_FORMAT, cardNumber));
         }
         return stringBuilder.toString();
     }
