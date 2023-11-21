@@ -127,4 +127,11 @@ public class BlackjackGame {
         }
         return false;
     }
+
+    public boolean shouldGameContinue(String gameDecision) {
+        if (gameDecision.equals("Y")) {
+            return true;
+        }
+        return false;
+    }
 }
