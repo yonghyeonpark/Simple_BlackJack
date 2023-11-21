@@ -12,6 +12,7 @@ public class BlackjackGame {
     private static final String PLAYER_WIN_MESSAGE = "당신의 승리입니다.";
     private static final String DEALER_WIN_MESSAGE = "당신의 패배입니다.";
     private static final String DRAW_MESSAGE = "비겼습니다.";
+    private static final String PROPERTY_FORMAT_START = "현재 재산: ";
 
     private final Player player;
     private final Dealer dealer;
@@ -31,7 +32,7 @@ public class BlackjackGame {
         player.resetPlayerCards();
     }
 
-    public String getCurrentProperty() {
+    public int getCurrentProperty() {
         return player.getCurrentProperty();
     }
 
@@ -48,11 +49,8 @@ public class BlackjackGame {
         return player.toString();
     }
 
-    public String getPlayerCardSum() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("총합: ")
-                .append(player.calculateCardNumbersSum());
-        return stringBuilder.toString();
+    public int getPlayerCardSum() {
+        return player.calculateCardNumbersSum();
     }
 
     public void resetDealerCards() {
@@ -81,13 +79,6 @@ public class BlackjackGame {
         if (cardDeck.count() <= 10) {
             cardDeck.setUp();
         }
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.format(GAME_ROUND_FORMAT, gameRound));
-        return stringBuilder.toString();
     }
 
     public String compareCardNumbersSum(int bettingAmount) {
@@ -133,5 +124,20 @@ public class BlackjackGame {
             return true;
         }
         return false;
+    }
+
+    public String getGameResult() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(score.toString())
+                .append("로 ")
+                .append(String.format("%d원의 자산이 남았습니다.", player.getCurrentProperty()));
+        return stringBuilder.toString();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(String.format(GAME_ROUND_FORMAT, gameRound));
+        return stringBuilder.toString();
     }
 }
