@@ -119,4 +119,12 @@ public class BlackjackGame {
         score.addDraw();
         return DRAW_MESSAGE;
     }
+
+    public boolean shouldGetMoreCard(String answer) {
+        if (answer.equals("Y")) {
+            player.addCard(cardDeck.pullCard());
+            return true;
+        }
+        return false;
+    }
 }
