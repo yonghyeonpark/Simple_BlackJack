@@ -141,7 +141,9 @@ public class BlackjackGame {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.format(GAME_ROUND_FORMAT, gameRound));
+        stringBuilder.append("\n")
+                .append(String.format(GAME_ROUND_FORMAT, gameRound));
+        gameRound++;
         return stringBuilder.toString();
     }
 }
