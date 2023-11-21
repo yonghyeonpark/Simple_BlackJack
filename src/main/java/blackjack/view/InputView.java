@@ -27,7 +27,6 @@ public class InputView {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String cardReceiptDecision = reader.readLine().toUpperCase();
         validate(cardReceiptDecision);
-        System.out.println();
         return cardReceiptDecision;
     }
 
@@ -36,7 +35,6 @@ public class InputView {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String gameDecision = reader.readLine().toUpperCase();
         validate(gameDecision);
-        System.out.println();
         return gameDecision;
     }
 
