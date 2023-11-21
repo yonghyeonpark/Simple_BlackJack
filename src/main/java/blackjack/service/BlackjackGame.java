@@ -7,7 +7,7 @@ import blackjack.model.Score;
 
 public class BlackjackGame {
 
-    private static final int INITIAL_VALUE = 1;
+    private static final int INITIAL_VALUE = 0;
     private static final String GAME_ROUND_FORMAT = "Game %d";
     private static final String PLAYER_WIN_MESSAGE = "당신의 승리입니다.";
     private static final String DEALER_WIN_MESSAGE = "당신의 패배입니다.";
@@ -25,6 +25,10 @@ public class BlackjackGame {
         this.cardDeck = cardDeck;
         this.score = score;
         this.gameRound = INITIAL_VALUE;
+    }
+
+    public void resetPlayerCards() {
+        player.resetPlayerCards();
     }
 
     public String getCurrentProperty() {
@@ -49,6 +53,10 @@ public class BlackjackGame {
         stringBuilder.append("총합: ")
                 .append(player.calculateCardNumbersSum());
         return stringBuilder.toString();
+    }
+
+    public void resetDealerCards() {
+        dealer.resetDealerCards();
     }
 
     public void pullDealerCard() {
