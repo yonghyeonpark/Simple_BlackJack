@@ -12,13 +12,13 @@ public class CardDeck {
     private static final String CARD_DECK_NUMBERS_FORMAT_START = "덱의 카드 ";
     private static final String CARD_DECK_NUMBER_FORMAT = "[%d]";
 
-    private final Queue<Integer> cardDeck;
+    private Queue<Integer> cardDeck;
 
     public CardDeck() {
         this.cardDeck = new LinkedList(setUp());
     }
 
-    public List<Integer> setUp() {
+    private List<Integer> setUp() {
         List<Integer> cardDeck = new ArrayList<>();
         CardNumberGenerator cardNumberGenerator = new CardNumberGenerator();
         for (int i = 1; i <= 10; i++) {
@@ -38,10 +38,15 @@ public class CardDeck {
     }
 
     public int pullCard() {
-        if (cardDeck.poll() == null) {
-            setUp();
+        Integer card = cardDeck.poll();
+        if (card == null) {
+            initializeCardDeck();
         }
-        return cardDeck.poll();
+        return card;
+    }
+
+    public void initializeCardDeck() {
+        cardDeck = new LinkedList<>(setUp());
     }
 
     public int count() {
@@ -51,8 +56,14 @@ public class CardDeck {
     public String showSixCardsInOrder() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(CARD_DECK_NUMBERS_FORMAT_START);
-        for (int i = 0; i < 6; i++) {
-            stringBuilder.append(String.format(CARD_DECK_NUMBER_FORMAT, cardDeck.peek()));
+        int count = 0;
+        for (Integer card : cardDeck) {
+            cardDeck.peek();
+            stringBuilder.append(String.format(CARD_DECK_NUMBER_FORMAT, card));
+            count++;
+            if (count == 6) {
+                break;
+            }
         }
         return stringBuilder.toString();
     }
