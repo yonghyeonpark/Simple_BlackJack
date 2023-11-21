@@ -48,8 +48,8 @@ public class Player {
         property.minusBettingAmount(bettingAmount);
     }
 
-    public String getCurrentProperty() {
-        return property.toString();
+    public int getCurrentProperty() {
+        return property.getProperty();
     }
 
     @Override
