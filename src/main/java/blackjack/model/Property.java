@@ -2,12 +2,14 @@ package blackjack.model;
 
 public class Property {
 
-    private static final String PROPERTY_FORMAT_START = "현재 재산: ";
-
     private int property;
 
     public Property() {
         this.property = 1000;
+    }
+
+    public int getProperty() {
+        return property;
     }
 
     public void bet(int bettingAmount) {
@@ -40,13 +42,5 @@ public class Property {
 
     public void minusBettingAmount(int bettingAmount) {
         property -= bettingAmount;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(PROPERTY_FORMAT_START)
-                .append(property);
-        return stringBuilder.toString();
     }
 }
