@@ -16,6 +16,10 @@ public class Player {
         this.cardNumbers = new ArrayList<>();
     }
 
+    public void resetPlayerCards() {
+        cardNumbers.clear();
+    }
+
     public void bet(int bettingAmount) {
         property.bet(bettingAmount);
     }

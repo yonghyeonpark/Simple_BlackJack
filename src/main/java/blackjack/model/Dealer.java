@@ -14,6 +14,10 @@ public class Dealer {
         this.cardNumbers = new ArrayList<>();
     }
 
+    public void resetDealerCards() {
+        cardNumbers.clear();
+    }
+
     public void addCard(int cardNumber) {
         cardNumbers.add(cardNumber);
     }
