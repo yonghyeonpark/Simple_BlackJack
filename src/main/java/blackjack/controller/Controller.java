@@ -93,14 +93,18 @@ public class Controller {
             String cardReceiptDecision = getCardReceiptDecision();
             checkCommand(cardReceiptDecision);
             isGetCard = blackjackGame.shouldGetMoreCard(cardReceiptDecision);
-            if (isGetCard) {
-                outputView.printGameProgressInformation(blackjackGame.getPlayerNumbers());
-                outputView.printPlayerCardSum(blackjackGame.getPlayerCardSum());
-            }
-            if (blackjackGame.getPlayerCardSum() > BLACKJACK) {
+            whenGetCard(isGetCard);
+            if (isPlayerCardSumOutOfRange()) {
                 outputView.printGameProgressInformation(blackjackGame.processInvalidPlayerCardSum(bettingAmount));
                 isGetCard = false;
             }
+        }
+    }
+
+    private void whenGetCard(boolean isGetCard) {
+        if (isGetCard) {
+            outputView.printGameProgressInformation(blackjackGame.getPlayerNumbers());
+            outputView.printPlayerCardSum(blackjackGame.getPlayerCardSum());
         }
     }
 
@@ -121,12 +125,16 @@ public class Controller {
     }
 
     private void compareCardSum(int bettingAmount) {
-        if (blackjackGame.getPlayerCardSum() <= BLACKJACK) {
+        if (!isPlayerCardSumOutOfRange()) {
             blackjackGame.pullDealerCard();
             outputView.printGameProgressInformation(blackjackGame.getDealerNumbers());
             outputView.printGameProgressInformation(blackjackGame.getDealerCardSum());
             outputView.printGameProgressInformation(blackjackGame.compareCardNumbersSum(bettingAmount));
         }
+    }
+
+    private boolean isPlayerCardSumOutOfRange() {
+        return blackjackGame.getPlayerCardSum() > BLACKJACK;
     }
 
     private boolean shouldGameContinue() throws IOException {
