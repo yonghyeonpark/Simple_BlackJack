@@ -12,6 +12,10 @@ import java.io.IOException;
 
 public class Controller {
 
+    private static final int ZERO = 0;
+    private static final int BLACKJACK = 21;
+    private static final String CARD_PREVIEW_COMMAND = "CODESQUAD";
+
     private final InputView inputView;
     private final OutputView outputView;
     private BlackjackGame blackjackGame;
@@ -51,7 +55,7 @@ public class Controller {
             processPlayerCardDecision(bettingAmount);
             compareCardSum(bettingAmount);
             outputView.printCurrentProperty(blackjackGame.getCurrentProperty());
-            if (blackjackGame.getCurrentProperty() == 0) {
+            if (blackjackGame.getCurrentProperty() == ZERO) {
                 break;
             }
             isContinue = shouldGameContinue();
@@ -93,7 +97,7 @@ public class Controller {
                 outputView.printGameProgressInformation(blackjackGame.getPlayerNumbers());
                 outputView.printPlayerCardSum(blackjackGame.getPlayerCardSum());
             }
-            if (blackjackGame.getPlayerCardSum() >= 22) {
+            if (blackjackGame.getPlayerCardSum() > BLACKJACK) {
                 outputView.printGameProgressInformation(blackjackGame.processInvalidPlayerCardSum(bettingAmount));
                 isGetCard = false;
             }
@@ -101,7 +105,7 @@ public class Controller {
     }
 
     private void checkCommand(String cardReceiptDecision) {
-        if (cardReceiptDecision.equals("CODESQUAD")) {
+        if (cardReceiptDecision.equals(CARD_PREVIEW_COMMAND)) {
             outputView.printGameProgressInformation(blackjackGame.respondToCommand());
         }
     }
@@ -117,7 +121,7 @@ public class Controller {
     }
 
     private void compareCardSum(int bettingAmount) {
-        if (blackjackGame.getPlayerCardSum() < 22) {
+        if (blackjackGame.getPlayerCardSum() <= BLACKJACK) {
             blackjackGame.pullDealerCard();
             outputView.printGameProgressInformation(blackjackGame.getDealerNumbers());
             outputView.printGameProgressInformation(blackjackGame.getDealerCardSum());

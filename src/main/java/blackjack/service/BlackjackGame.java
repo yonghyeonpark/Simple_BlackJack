@@ -8,10 +8,20 @@ import blackjack.model.Score;
 public class BlackjackGame {
 
     private static final int INITIAL_VALUE = 1;
+    private static final int BLACKJACK = 21;
+    private static final int CRITERIA_CARD_PULL = 16;
+    private static final int CRITERIA_SHUFFLE_CARD_DECK = 10;
     private static final String GAME_ROUND_FORMAT = "Game %d";
     private static final String PLAYER_WIN_MESSAGE = "당신의 승리입니다.";
     private static final String DEALER_WIN_MESSAGE = "당신의 패배입니다.";
     private static final String DRAW_MESSAGE = "비겼습니다.";
+    private static final String DEALER_CARD_SUM_FORMAT_START = "딜러의 카드 합계는 ";
+    private static final String DEALER_CARD_SUM_FORMAT_END = "입니다.";
+    private static final String YES = "Y";
+    private static final String SCORE_FORMAT = "로 ";
+    private static final String CURRENT_PROPERTY_FORMAT = "%d원의 자산이 남았습니다.";
+    private static final String NEW_LINE = "\n";
+    private static final String CARD_PREVIEW_COMMAND = "CODESQUAD";
 
     private final Player player;
     private final Dealer dealer;
@@ -56,7 +66,7 @@ public class BlackjackGame {
     }
 
     public void pullDealerCard() {
-        while (dealer.calculateCardNumbersSum() <= 16) {
+        while (dealer.calculateCardNumbersSum() <= CRITERIA_CARD_PULL) {
             dealer.addCard(cardDeck.pullCard());
         }
     }
@@ -67,14 +77,14 @@ public class BlackjackGame {
 
     public String getDealerCardSum() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("딜러의 카드 합계는 ")
+        stringBuilder.append(DEALER_CARD_SUM_FORMAT_START)
                 .append(dealer.calculateCardNumbersSum())
-                .append("입니다.");
+                .append(DEALER_CARD_SUM_FORMAT_END);
         return stringBuilder.toString();
     }
 
     public void judgeGetNewDeck() {
-        if (cardDeck.count() <= 10) {
+        if (cardDeck.count() <= CRITERIA_SHUFFLE_CARD_DECK) {
             cardDeck.initializeCardDeck();
         }
     }
@@ -86,14 +96,14 @@ public class BlackjackGame {
     }
 
     public String compareCardNumbersSum(int bettingAmount) {
-        if (dealer.calculateCardNumbersSum() == 21) {
+        if (dealer.calculateCardNumbersSum() == BLACKJACK) {
             return winDealer(bettingAmount);
         }
-        if (dealer.calculateCardNumbersSum() >= 22) {
+        if (dealer.calculateCardNumbersSum() > BLACKJACK) {
             return winPlayer(bettingAmount);
         }
         if (player.calculateCardNumbersSum() > dealer.calculateCardNumbersSum()) {
-            if (player.calculateCardNumbersSum() == 21) {
+            if (player.calculateCardNumbersSum() == BLACKJACK) {
                 return winPlayerWithBlackjack(bettingAmount);
             }
             return winPlayer(bettingAmount);
@@ -128,18 +138,18 @@ public class BlackjackGame {
     }
 
     public boolean shouldGetMoreCard(String answer) {
-        if (answer.equals("Y")) {
+        if (answer.equals(YES)) {
             player.addCard(cardDeck.pullCard());
             return true;
         }
-        if (answer.equals("CODESQUAD")) {
+        if (answer.equals(CARD_PREVIEW_COMMAND)) {
             return true;
         }
         return false;
     }
 
     public boolean shouldGameContinue(String gameDecision) {
-        if (gameDecision.equals("Y")) {
+        if (gameDecision.equals(YES)) {
             return true;
         }
         return false;
@@ -148,8 +158,8 @@ public class BlackjackGame {
     public String getGameResult() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(score.toString())
-                .append("로 ")
-                .append(String.format("%d원의 자산이 남았습니다.", player.getCurrentProperty()));
+                .append(SCORE_FORMAT)
+                .append(String.format(CURRENT_PROPERTY_FORMAT, player.getCurrentProperty()));
         return stringBuilder.toString();
     }
 
@@ -160,7 +170,7 @@ public class BlackjackGame {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("\n")
+        stringBuilder.append(NEW_LINE)
                 .append(String.format(GAME_ROUND_FORMAT, gameRound));
         gameRound++;
         return stringBuilder.toString();

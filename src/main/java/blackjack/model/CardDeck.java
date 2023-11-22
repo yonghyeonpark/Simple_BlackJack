@@ -9,6 +9,8 @@ import java.util.Queue;
 
 public class CardDeck {
 
+    private static final int CARD_NUMBER_START = 1;
+    private static final int CARD_NUMBER_END = 11;
     private static final String CARD_DECK_NUMBERS_FORMAT_START = "덱의 카드 ";
     private static final String CARD_DECK_NUMBER_FORMAT = "[%d]";
 
@@ -21,11 +23,11 @@ public class CardDeck {
     private List<Integer> setUp() {
         List<Integer> cardDeck = new ArrayList<>();
         CardNumberGenerator cardNumberGenerator = new CardNumberGenerator();
-        for (int i = 1; i <= 10; i++) {
-            repeatFour(i, cardDeck);
+        for (int cardNumber = CARD_NUMBER_START; cardNumber < CARD_NUMBER_END; cardNumber++) {
+            repeatFour(cardNumber, cardDeck);
         }
         for (int i = 0; i < 12; i++) {
-            cardDeck.add(11);
+            cardDeck.add(CARD_NUMBER_END);
         }
         Collections.shuffle(cardDeck);
         return cardDeck;
